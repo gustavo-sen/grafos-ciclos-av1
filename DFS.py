@@ -9,6 +9,12 @@ grafo = {
     'G':['F','D']
 }
 
+grafo2 ={
+    'A':['B'],
+    'B': ['C'],
+    'C': []
+}
+
 # Inicialização de variáveis
 tempo = 0
 ciclo = False
@@ -59,5 +65,7 @@ print("\nTempos de descoberta e término:")
 for vertice in grafo:
     print(f"{vertice}: {descoberta[vertice]}/{termino[vertice]}")
 
+if ciclo:
+    print("tem ciclo")
 
 
