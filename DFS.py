@@ -9,11 +9,7 @@ grafo = {
     'G':['F','D']
 }
 
-grafo2 ={
-    'A':['B'],
-    'B': ['C'],
-    'C': []
-}
+
 
 # Inicialização de variáveis
 tempo = 0
@@ -48,13 +44,13 @@ def dfs_visit(vertice):
             dfs_visit(adjacente)
         elif cor[adjacente] == 'cinza':
             ciclo = True
-            
     
     cor[vertice] = 'preto'  # Vértice terminado
     tempo += 1
     termino[vertice] = tempo  # Tempo de término
 
-
+def adicionar_no(grafo, no1, no2):
+    grafo[no1] = no2
 
 # Executa o DFS no grafo
 dfs(grafo)
@@ -67,5 +63,7 @@ for vertice in grafo:
 
 if ciclo:
     print("tem ciclo")
+else:
+    print("não tem ciclo")
 
 
