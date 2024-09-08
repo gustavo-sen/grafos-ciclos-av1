@@ -1,14 +1,14 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
-G = nx.Graph()
+G = nx.DiGraph()
 
 # Dicionário para armazenar a lista de adjacência
 grafo = {}
 
 def connect_node(start_node, end_node=''):
     # Adiciona o nó de destino ao grafo e ao dicionário se ele não existir
-    if end_node and end_node not in grafo:
+    if end_node != '' and end_node not in grafo:
         grafo[end_node] = []
         G.add_node(end_node)
 
@@ -20,7 +20,7 @@ def connect_node(start_node, end_node=''):
     # Adiciona a aresta
     if end_node:
         grafo[start_node].append(end_node)
-        grafo[end_node].append(start_node)  # Atualiza a lista de adjacência de end_node
+        grafo[end_node].append(start_node) 
         G.add_edge(start_node, end_node)
 
 def remove_node(node_name):
@@ -44,13 +44,21 @@ connect_node('A', 'B')
 connect_node('A', 'C')
 connect_node('B', 'C')
 
-# Exibir o grafo
-nx.draw(G, with_labels=True)
+# Exibir o grafo inicial
+pos = nx.spring_layout(G)  # Posição dos nós
+nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=2000, 
+        edge_color='gray', arrows=True, arrowsize=20)
+
+plt.title("Grafo Inicial")
 plt.show()
 
 # Remover um nó
 remove_node('B')
 
 # Exibir o grafo atualizado
-nx.draw(G, with_labels=True)
+pos = nx.spring_layout(G)  # Recalcular a posição dos nós
+nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=2000, 
+        edge_color='gray', arrows=True, arrowsize=20)
+
+plt.title("Grafo Atualizado")
 plt.show()
