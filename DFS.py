@@ -5,7 +5,7 @@ descoberta = {}
 termino = {}  
 predecessor = {}  
 
-def dfs(grafo):
+def hasLoop(grafo):
     global ciclo
     for vertice in grafo:
         cor[vertice] = 'branco'  # Todos começam como brancos
