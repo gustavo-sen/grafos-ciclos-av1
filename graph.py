@@ -38,7 +38,7 @@ def connect_node(start_node, end_node=''):
     # Adiciona a aresta
     if end_node:
         grafo[start_node].append(end_node)
-        grafo[end_node].append(start_node) 
+        #grafo[end_node].append(start_node) 
         G.add_edge(start_node, end_node)
 
 def remove_node(node_name):
