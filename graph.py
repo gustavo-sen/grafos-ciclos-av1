@@ -6,6 +6,24 @@ G = nx.DiGraph()
 # Dicionário para armazenar a lista de adjacência
 grafo = {}
 
+def create_plot():
+    plt.figure(figsize=(8, 6))  # Define o tamanho da figura
+    pos = nx.spring_layout(G)  # Posição dos nós
+    nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=2000, 
+            edge_color='gray', arrows=True, arrowsize=20)
+    plt.title("Grafo Atual")
+    plt.ion()  # Ativa o modo interativo
+    plt.show()
+
+def update_plot():
+    plt.clf()  # Limpa a figura atual
+    pos = nx.spring_layout(G)  # Recalcula a posição dos nós
+    nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=2000, 
+            edge_color='gray', arrows=True, arrowsize=20)
+    plt.title("Grafo Atualizado")
+    plt.draw()  # Redesenha a figura
+    plt.pause(0.1)  # Pausa para permitir a visualização
+
 def connect_node(start_node, end_node=''):
     # Adiciona o nó de destino ao grafo e ao dicionário se ele não existir
     if end_node != '' and end_node not in grafo:
@@ -39,26 +57,4 @@ def remove_node(node_name):
 
     print(f"Node {node_name} removed")
 
-# Adicionar nós e arestas
-connect_node('A', 'B')
-connect_node('A', 'C')
-connect_node('B', 'C')
 
-# Exibir o grafo inicial
-pos = nx.spring_layout(G)  # Posição dos nós
-nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=2000, 
-        edge_color='gray', arrows=True, arrowsize=20)
-
-plt.title("Grafo Inicial")
-plt.show()
-
-# Remover um nó
-remove_node('B')
-
-# Exibir o grafo atualizado
-pos = nx.spring_layout(G)  # Recalcular a posição dos nós
-nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=2000, 
-        edge_color='gray', arrows=True, arrowsize=20)
-
-plt.title("Grafo Atualizado")
-plt.show()
