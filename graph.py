@@ -56,5 +56,3 @@ def remove_node(node_name):
     del grafo[node_name]
 
     print(f"Node {node_name} removed")
-
-

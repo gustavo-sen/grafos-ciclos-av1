@@ -27,3 +27,4 @@ while True:
 
     update_plot()  
     print("Tem loop?:", dfs(grafo)) 
+    print(grafo)
