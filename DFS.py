@@ -1,19 +1,18 @@
-def dfs(node, graph, visited, stack):
+def dfs(current_node, graph, visited, stack):
     # Marcar o nó como visitado e adicioná-lo à pilha de recursão
-    visited.add(node)
-    stack.add(node)
+    visited.add(current_node)
+    stack.add(current_node)
     
-    # Explorar todos os vizinhos
-    for neighbor in graph.get(node, []):
-        if neighbor not in visited:
-            if dfs(neighbor, graph, visited, stack):
+    # Explora vizinhos do no atual
+    for adjacent_node in graph.get(current_node, []):
+        if adjacent_node not in visited:
+            if dfs(adjacent_node, graph, visited, stack):
                 return True
-        elif neighbor in stack:
-            # Se o vizinho está na pilha de recursão, encontramos um ciclo
+        elif adjacent_node in stack:
             return True
     
-    # Remover o nó da pilha de recursão ao final da exploração
-    stack.remove(node)
+    # Remover o nó da pilha ao final da exploração
+    stack.remove(current_node)
     return False
 
 def hasLoop(graph):
@@ -21,10 +20,11 @@ def hasLoop(graph):
     stack = set()
     
     # Verificar todos os nós para cobrir grafos desconexos
-    for node in graph:
-        if node not in visited:
-            if dfs(node, graph, visited, stack):
+    for current_node in graph:
+        if current_node not in visited:
+            if dfs(current_node, graph, visited, stack) == True:
                 return True
-    
+            
+    # se chegou aqui é porque não achou ciclos
     return False
 
