@@ -3,8 +3,8 @@ from DFS import *
 create_plot()
 
 def update_plots():
-    print(grafo)
-    print("É cíclico: ", hasLoop(grafo)) 
+    print(grafo.items())
+    print("É cíclico?: ", "SIM" if hasLoop(grafo) else "NÃO") 
     update_plot()  
 
 while True:
