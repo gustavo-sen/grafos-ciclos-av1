@@ -1,16 +1,35 @@
+def dfs(current_node, graph, visited, stack):
+    # Marcar o nó como visitado e adicioná-lo à pilha de recursão
+    visited.add(current_node)
+    stack.add(current_node)
+    
+    # Explora vizinhos do no atual
+    for adjacent_node in graph.get(current_node, []):
+        if adjacent_node not in visited:
+            if dfs(adjacent_node, graph, visited, stack):
+                return True
+        elif adjacent_node in stack:
+            return True
+        # Remover o nó da pilha ao final da exploração
+    stack.remove(current_node)
+    return False
+
 def hasLoop(graph):
     visited = set()
     stack = set()
-    
+    # Verificar todos os nós para cobrir grafos desconexos
     for current_node in graph:
-        if current_node not in visited:     # Se não visitado
-            visited.add(current_node)       # Visito o nó
-            stack.add(current_node)         # Adiciono no processamento stack
+        if current_node not in visited:
+            if dfs(current_node, graph, visited, stack) == True:
+              return True
 
-            for adjacent_node in graph.get(current_node):   # Para cada nó adjacente visite-os
-                if adjacent_node not in visited:            # Se nao foi visitado,
-                    visited.add(adjacent_node)              # Adicionar em stack
-                    stack.add(adjacent_node)                # Adicionar em stack
-                elif adjacent_node in stack:                # se ele é adjacente e ja estava em análise há ciclo
-                    return True                             
+    # se chegou aqui é porque não achou ciclos
     return False
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['C'],
+    'C': ['A']  # Ciclo: A → B → C → A
+}
+
+print(hasLoop(graph)) 
