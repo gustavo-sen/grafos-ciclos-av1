@@ -25,13 +25,3 @@ def hasLoop(graph):
 
     # se chegou aqui é porque não achou ciclos
     return False
-
-
-# Exemplo de uso
-graph = {
-    'A': ['B', 'C'],
-    'B': ['C'],
-    'C': ['A']  # Ciclo: A → B → C → A
-}
-
-print(hasLoop(graph))
