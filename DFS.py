@@ -25,3 +25,5 @@ def hasLoop(graph):
 
     # se chegou aqui é porque não achou ciclos
     return False
+
+

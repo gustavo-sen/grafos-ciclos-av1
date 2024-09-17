@@ -2,10 +2,10 @@ def hasLoop(graph):
     visited = set()       # Conjunto para nós completamente visitados
     processing = set()    # Conjunto para nós sendo processados (na pilha)
 
-    for start_node in graph:
-        if start_node not in visited:
+    for current_node in graph:
+        if current_node not in visited:
             # Usar uma pilha para DFS iterativo
-            node_stack = [(start_node, None)]  # (nó atual, nó pai)
+            node_stack = [(current_node, None)]  # (nó atual, nó pai)
 
             while node_stack:
                 current_node, parent = node_stack[-1]
